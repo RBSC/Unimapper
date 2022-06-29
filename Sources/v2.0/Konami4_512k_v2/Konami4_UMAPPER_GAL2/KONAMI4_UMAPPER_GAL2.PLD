@@ -1,0 +1,83 @@
+Name     KonamiK6_UMAPPER_GAL2 ;
+PartNo   00 ;
+Date     08.01.2022 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK                     ; /*                                 */ 
+PIN  2  = nSTSL                   ; /*                                 */ 
+PIN  3  = nWE                     ; /*                                 */ 
+PIN  4  = nReset                  ; /*                                 */ 
+PIN  5  = A15                     ; /*                                 */ 
+PIN  6  = A14                     ; /*                                 */ 
+PIN  7  = A13                     ; /*                                 */ 
+PIN  8  = di6                     ; /*                                 */ 
+PIN  9  = di5                     ; /*                                 */ 
+PIN 10  = di4                     ; /*                                 */ 
+PIN 11  = di3                     ; /*                                 */ 
+PIN 13  = A12                     ; /*                                 */ 
+
+
+/* *************** OUTPUT PINS *********************/
+PIN 14  = d01                     ; /*                                 */ 
+PIN 15  = d02                     ; /*                                 */ 
+PIN 16  = d03                     ; /*                                 */ 
+PIN 17  = d11                     ; /*                                 */ 
+PIN 18  = d12                     ; /*                                 */ 
+PIN 19  = d13                     ; /*                                 */ 
+PIN 20  = d21                     ; /*                                 */ 
+PIN 21  = d22                     ; /*                                 */ 
+PIN 22  = d23                     ; /*                                 */ 
+PIN 23  = rez                     ; /*                                 */ 
+
+d01.d =  nReset&(((!nWE&!nSTSL)&A13&!A15&di3)#((nWE#nSTSL)&d01)#((!nWE&!nSTSL)&(!A13#A15)&d01));
+d02.d =  nReset&(((!nWE&!nSTSL)&!A13&A15&di3)#((nWE#nSTSL)&d02)#((!nWE&!nSTSL)&(A13#!A15)&d02));
+d03.d =  nReset&(((!nWE&!nSTSL)&A13&A15&di3)#((nWE#nSTSL)&d03)#((!nWE&!nSTSL)&(!A13#!A15)&d03));
+d11.d =  nReset&(((!nWE&!nSTSL)&A13&!A15&di4)#((nWE#nSTSL)&d11)#((!nWE&!nSTSL)&(!A13#A15)&d11));
+d12.d =  nReset&(((!nWE&!nSTSL)&!A13&A15&di4)#((nWE#nSTSL)&d12)#((!nWE&!nSTSL)&(A13#!A15)&d12));
+d13.d =  nReset&(((!nWE&!nSTSL)&A13&A15&di4)#((nWE#nSTSL)&d13)#((!nWE&!nSTSL)&(!A13#!A15)&d13));
+d21.d =  nReset&(((!nWE&!nSTSL)&A13&!A15&di5)#((nWE#nSTSL)&d21)#((!nWE&!nSTSL)&(!A13#A15)&d21));
+d22.d =  nReset&(((!nWE&!nSTSL)&!A13&A15&di5)#((nWE#nSTSL)&d22)#((!nWE&!nSTSL)&(A13#!A15)&d22));
+d23.d =  nReset&(((!nWE&!nSTSL)&A13&A15&di5)#((nWE#nSTSL)&d23)#((!nWE&!nSTSL)&(!A13#!A15)&d23));
+
+d01.oe = A13&!A15;
+d02.oe = !A13&A15;
+d03.oe = A13&A15;
+
+d11.oe = A13&!A15;
+d12.oe = !A13&A15;
+d13.oe = A13&A15;
+
+d21.oe = A13&!A15;
+d22.oe = !A13&A15;
+d23.oe = A13&A15;
+
+
+rez.d =  !nWE&!nSTSL;
+rez.oe = 'b'1;
+rez.ar = 'b'0;
+rez.sp = 'b'0;
+
+d01.ar = 'b'0;
+d01.sp = 'b'0;
+d02.ar = 'b'0;
+d02.sp = 'b'0;
+d03.ar = 'b'0;
+d03.sp = 'b'0;
+d11.ar = 'b'0;
+d11.sp = 'b'0;
+d12.ar = 'b'0;
+d12.sp = 'b'0;
+d13.ar = 'b'0;
+d13.sp = 'b'0;
+d21.ar = 'b'0;
+d21.sp = 'b'0;
+d22.ar = 'b'0;
+d22.sp = 'b'0;
+d23.ar = 'b'0;
+d23.sp = 'b'0;

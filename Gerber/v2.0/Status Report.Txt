@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : Project [umapper_v2.0.PrjPcb]
+   Generated File[umapper_v2.0_rbsc.TXT]
+   Generated File[umapper_v2.0_rbsc.LDP]
+   Generated File[umapper_v2.0_rbsc.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 19:11:31 On 29.06.2022

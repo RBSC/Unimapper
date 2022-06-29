@@ -1,0 +1,165 @@
+%SIGNAL
+PIN  13 =  A12 
+PIN   7 =  A13 
+PIN   6 =  A14 
+PIN   5 =  A15 
+PIN   1 =  CLK 
+PIN  14 =  d30 
+PIN  15 =  d31 
+PIN  16 =  d32 
+PIN  17 =  d40 
+PIN  18 =  d41 
+PIN  19 =  d42 
+PIN  20 =  d50 
+PIN  21 =  d51 
+PIN  22 =  d52 
+PIN   8 =  di2 
+PIN  11 =  di3 
+PIN  10 =  di4 
+PIN   9 =  di5 
+PIN   4 =  nReset 
+PIN   2 =  nSTSL 
+PIN   3 =  nWE 
+PIN  23 =  test 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+d30.d  =>
+    !A12 & A13 & A14 & !A15 & di2 & nReset & !nSTSL & !nWE
+  # A12 & !d30 & nReset & !nSTSL & !nWE
+  # !A13 & !d30 & nReset & !nSTSL & !nWE
+  # !A14 & !d30 & nReset & !nSTSL & !nWE
+  # A15 & !d30 & nReset & !nSTSL & !nWE
+  # !d30 & nReset & nSTSL
+  # !d30 & nReset & nWE
+
+d30.ar d31.ar d32.ar d40.ar d41.ar d42.ar d50.ar d51.ar d52.ar  =>
+    0 
+
+d30.oe  =>
+    !A15
+
+d30.sp d31.sp d32.sp d40.sp d41.sp d42.sp d50.sp d51.sp d52.sp  =>
+    0 
+
+d31.d  =>
+    A12 & A13 & A14 & !A15 & di2 & nReset & !nSTSL & !nWE
+  # !A12 & !d31 & nReset & !nSTSL & !nWE
+  # !A13 & !d31 & nReset & !nSTSL & !nWE
+  # !A14 & !d31 & nReset & !nSTSL & !nWE
+  # A15 & !d31 & nReset & !nSTSL & !nWE
+  # !d31 & nReset & nSTSL
+  # !d31 & nReset & nWE
+
+d31.ar  =>
+    
+d31.oe  =>
+    A15
+
+d31.sp  =>
+    
+d32.d  =>
+    0 
+
+d32.ar  =>
+    
+d32.oe  =>
+    0 
+
+d32.sp  =>
+    
+d40.d  =>
+    !A12 & A13 & A14 & !A15 & di3 & nReset & !nSTSL & !nWE
+  # A12 & !d40 & nReset & !nSTSL & !nWE
+  # !A13 & !d40 & nReset & !nSTSL & !nWE
+  # !A14 & !d40 & nReset & !nSTSL & !nWE
+  # A15 & !d40 & nReset & !nSTSL & !nWE
+  # !d40 & nReset & nSTSL
+  # !d40 & nReset & nWE
+
+d40.ar  =>
+    
+d40.oe  =>
+    !A15
+
+d40.sp  =>
+    
+d41.d  =>
+    A12 & A13 & A14 & !A15 & di3 & nReset & !nSTSL & !nWE
+  # !A12 & !d41 & nReset & !nSTSL & !nWE
+  # !A13 & !d41 & nReset & !nSTSL & !nWE
+  # !A14 & !d41 & nReset & !nSTSL & !nWE
+  # A15 & !d41 & nReset & !nSTSL & !nWE
+  # !d41 & nReset & nSTSL
+  # !d41 & nReset & nWE
+
+d41.ar  =>
+    
+d41.oe  =>
+    A15
+
+d41.sp  =>
+    
+d42.d  =>
+    0 
+
+d42.ar  =>
+    
+d42.oe  =>
+    0 
+
+d42.sp  =>
+    
+d50.d  =>
+    !A12 & A13 & A14 & !A15 & di4 & nReset & !nSTSL & !nWE
+  # A12 & !d50 & nReset & !nSTSL & !nWE
+  # !A13 & !d50 & nReset & !nSTSL & !nWE
+  # !A14 & !d50 & nReset & !nSTSL & !nWE
+  # A15 & !d50 & nReset & !nSTSL & !nWE
+  # !d50 & nReset & nSTSL
+  # !d50 & nReset & nWE
+
+d50.ar  =>
+    
+d50.oe  =>
+    !A15
+
+d50.sp  =>
+    
+d51.d  =>
+    A12 & A13 & A14 & !A15 & di4 & nReset & !nSTSL & !nWE
+  # !A12 & !d51 & nReset & !nSTSL & !nWE
+  # !A13 & !d51 & nReset & !nSTSL & !nWE
+  # !A14 & !d51 & nReset & !nSTSL & !nWE
+  # A15 & !d51 & nReset & !nSTSL & !nWE
+  # !d51 & nReset & nSTSL
+  # !d51 & nReset & nWE
+
+d51.ar  =>
+    
+d51.oe  =>
+    A15
+
+d51.sp  =>
+    
+d52.d  =>
+    0 
+
+d52.ar  =>
+    
+d52.oe  =>
+    0 
+
+d52.sp  =>
+    
+test =>
+    !nWE
+  # !nSTSL
+
+test.oe  =>
+    1 
+
+%END

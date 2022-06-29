@@ -1,0 +1,83 @@
+Name     ASC8_MAPPER_GAL2 ;
+PartNo   00 ;
+Date     21.11.2021 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS ********************                     */
+PIN  1  = CLK                     ; /* clock ~3.5Mhz                   */ 
+PIN  2  = nSTSL                   ; /* slot  select low-active         */ 
+PIN  3  = nWE                     ; /* write select low-active         */ 
+PIN  4  = nReset                  ; /* reset select low-active         */ 
+PIN  5  = A15                     ; /* adrress bit 15                  */ 
+PIN  6  = A14                     ; /* adrress bit 14                  */ 
+PIN  7  = A13                     ; /* adrress bit 13                  */ 
+PIN  8  = A11                     ; /* adrress bit 11                  */ 
+PIN  9  = di5                     ; /* page number bit 5               */ 
+PIN 10  = di4                     ; /* page number bit 4               */ 
+PIN 11  = di3                     ; /* page number bit 3               */ 
+PIN 13  = A12                     ; /* adrress bit 12                  */ 
+
+
+/* *************** OUTPUT PINS ********************                    */
+PIN 14  = d31                     ; /* MA13_1                          */ 
+PIN 15  = d32                     ; /* MA13_2                          */ 
+PIN 16  = d33                     ; /* MA13_3                          */ 
+PIN 17  = d41                     ; /* MA14_1                          */ 
+PIN 18  = d42                     ; /* MA14_2                          */ 
+PIN 19  = d43                     ; /* MA14_3                          */ 
+PIN 20  = d51                     ; /* MA15_1                          */ 
+PIN 21  = d52                     ; /* MA15_2                          */ 
+PIN 22  = d53                     ; /* MA15_3                          */ 
+PIN 23  = test                    ; /* !nWE#!nSTSL                     */ 
+
+
+
+d31.d = nReset&(((!nWE&!nSTSL)&!A15&A14&!A12&A11&di3)#((nWE#nSTSL)&d31)#((!nWE&!nSTSL)&(A15#!A14#A12#!A11)& d31)); /* 1 - page bit 3 */
+d32.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&!A11&di3)#((nWE#nSTSL)&d32)#((!nWE&!nSTSL)&(A15#!A14#!A12#A11)& d32)); /* 2 - page bit 3 */
+d33.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&A11&di3)# ((nWE#nSTSL)&d33)#((!nWE&!nSTSL)&(A15#!A14#!A12#!A11)&d33)); /* 3 - page bit 3 */
+
+d41.d = nReset&(((!nWE&!nSTSL)&!A15&A14&!A12&A11&di4)#((nWE#nSTSL)&d41)#((!nWE&!nSTSL)&(A15#!A14#A12#!A11)& d41)); /* 1 - page bit 4 */
+d42.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&!A11&di4)#((nWE#nSTSL)&d42)#((!nWE&!nSTSL)&(A15#!A14#!A12#A11)& d42)); /* 2 - page bit 4 */
+d43.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&A11&di4)# ((nWE#nSTSL)&d43)#((!nWE&!nSTSL)&(A15#!A14#!A12#!A11)&d43)); /* 3 - page bit 4 */
+
+d51.d = nReset&(((!nWE&!nSTSL)&!A15&A14&!A12&A11&di5)#((nWE#nSTSL)&d51)#((!nWE&!nSTSL)&(A15#!A14#A12#!A11)& d51)); /* 1 - page bit 5 */
+d52.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&!A11&di5)#((nWE#nSTSL)&d52)#((!nWE&!nSTSL)&(A15#!A14#!A12#A11)& d52)); /* 2 - page bit 5 */
+d53.d = nReset&(((!nWE&!nSTSL)&!A15&A14&A12&A11&di5)# ((nWE#nSTSL)&d53)#((!nWE&!nSTSL)&(A15#!A14#!A12#!A11)&d53)); /* 3 - page bit 5 */
+
+d31.oe = A13&!A15;
+d32.oe = !A13&A15;
+d33.oe = A13&A15;
+
+d41.oe = A13&!A15;
+d42.oe = !A13&A15;
+d43.oe = A13&A15;
+
+d51.oe = A13&!A15;
+d52.oe = !A13&A15;
+d53.oe = A13&A15;
+
+test  = !nWE#!nSTSL;
+
+d31.ar = 'b'0;
+d31.sp = 'b'0;
+d32.ar = 'b'0;
+d32.sp = 'b'0;
+d33.ar = 'b'0;
+d33.sp = 'b'0;
+d41.ar = 'b'0;
+d41.sp = 'b'0;
+d42.ar = 'b'0;
+d42.sp = 'b'0;
+d43.ar = 'b'0;
+d43.sp = 'b'0;
+d51.ar = 'b'0;
+d51.sp = 'b'0;
+d52.ar = 'b'0;
+d52.sp = 'b'0;
+d53.ar = 'b'0;
+d53.sp = 'b'0;

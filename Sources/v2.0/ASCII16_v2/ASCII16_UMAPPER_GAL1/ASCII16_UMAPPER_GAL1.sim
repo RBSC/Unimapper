@@ -1,0 +1,153 @@
+%SIGNAL
+PIN  11 =  A11 
+PIN  13 =  A12 
+PIN   7 =  A13 
+PIN   6 =  A14 
+PIN   5 =  A15 
+PIN   1 =  CLK 
+PIN  23 =  WE_OUT 
+PIN  14 =  d00 
+PIN  15 =  d08 
+PIN  16 =  d09 
+PIN  17 =  d10 
+PIN  18 =  d11 
+PIN  19 =  d19 
+PIN  20 =  d20 
+PIN  21 =  d21 
+PIN  22 =  d29 
+PIN   8 =  di0 
+PIN   9 =  di1 
+PIN  10 =  di2 
+PIN   4 =  nReset 
+PIN   2 =  nSTSL 
+PIN   3 =  nWE 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+WE_OUT =>
+    !A15
+  # !A14
+  # !A13
+  # !A12
+  # nSTSL
+  # nWE
+
+d00 =>
+    A13
+
+d08.d  =>
+    0 
+
+d08.ar d09.ar d10.ar d11.ar d19.ar d20.ar d21.ar d29.ar  =>
+    0 
+
+d08.oe  =>
+    0 
+
+d08.sp d09.sp d10.sp d11.sp d19.sp d20.sp d21.sp d29.sp  =>
+    0 
+
+d09.d  =>
+    0 
+
+d09.ar  =>
+    
+d09.oe  =>
+    0 
+
+d09.sp  =>
+    
+d10.d  =>
+    !A12 & A13 & A14 & !A15 & di0 & nReset & !nSTSL & !nWE
+  # A12 & !d10 & nReset & !nSTSL & !nWE
+  # !A13 & !d10 & nReset & !nSTSL & !nWE
+  # !A14 & !d10 & nReset & !nSTSL & !nWE
+  # A15 & !d10 & nReset & !nSTSL & !nWE
+  # !d10 & nReset & nSTSL
+  # !d10 & nReset & nWE
+
+d10.ar  =>
+    
+d10.oe  =>
+    !A15
+
+d10.sp  =>
+    
+d11.d  =>
+    A12 & A13 & A14 & !A15 & di0 & nReset & !nSTSL & !nWE
+  # !A12 & !d11 & nReset & !nSTSL & !nWE
+  # !A13 & !d11 & nReset & !nSTSL & !nWE
+  # !A14 & !d11 & nReset & !nSTSL & !nWE
+  # A15 & !d11 & nReset & !nSTSL & !nWE
+  # !d11 & nReset & nSTSL
+  # !d11 & nReset & nWE
+
+d11.ar  =>
+    
+d11.oe  =>
+    A15
+
+d11.sp  =>
+    
+d19.d  =>
+    0 
+
+d19.ar  =>
+    
+d19.oe  =>
+    0 
+
+d19.sp  =>
+    
+d20.d  =>
+    !A12 & A13 & A14 & !A15 & di1 & nReset & !nSTSL & !nWE
+  # A12 & !d20 & nReset & !nSTSL & !nWE
+  # !A13 & !d20 & nReset & !nSTSL & !nWE
+  # !A14 & !d20 & nReset & !nSTSL & !nWE
+  # A15 & !d20 & nReset & !nSTSL & !nWE
+  # !d20 & nReset & nSTSL
+  # !d20 & nReset & nWE
+
+d20.ar  =>
+    
+d20.oe  =>
+    !A15
+
+d20.sp  =>
+    
+d21.d  =>
+    A12 & A13 & A14 & !A15 & di1 & nReset & !nSTSL & !nWE
+  # !A12 & !d21 & nReset & !nSTSL & !nWE
+  # !A13 & !d21 & nReset & !nSTSL & !nWE
+  # !A14 & !d21 & nReset & !nSTSL & !nWE
+  # A15 & !d21 & nReset & !nSTSL & !nWE
+  # !d21 & nReset & nSTSL
+  # !d21 & nReset & nWE
+
+d21.ar  =>
+    
+d21.oe  =>
+    A15
+
+d21.sp  =>
+    
+d29.d  =>
+    0 
+
+d29.ar  =>
+    
+d29.oe  =>
+    0 
+
+d29.sp  =>
+    
+WE_OUT.oe  =>
+    1 
+
+d00.oe  =>
+    1 
+
+%END

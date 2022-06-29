@@ -1,0 +1,76 @@
+Name     ASC16_UMAPPER_GAL1 ;
+PartNo   00 ;
+Date     29.11.2021 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/*                        ASC16 UMAPPER GAL 1                          */
+/* *************** INPUT PINS ********************                     */
+PIN  1  = CLK                     ; /* clock ~3.5Mhz                   */ 
+PIN  2  = nSTSL                   ; /* slot  select low-active         */ 
+PIN  3  = nWE                     ; /* write select low-active         */ 
+PIN  4  = nReset                  ; /* reset select low-active         */ 
+PIN  5  = A15                     ; /* adrress bit 15    unuse         */ 
+PIN  6  = A14                     ; /* adrress bit 14    unuse         */ 
+PIN  7  = A13                     ; /* adrress bit 13    unuse         */ 
+PIN  8  = di0                     ; /* page number bit 0               */ 
+PIN  9  = di1                     ; /* page number bit 1               */ 
+PIN 10  = di2                     ; /* page number bit 2               */ 
+PIN 11  = A11                     ; /* adrress bit 11                  */ 
+PIN 13  = A12                     ; /* adrress bit 12                  */ 
+
+
+/* *************** OUTPUT PINS ********************                    */
+PIN 14  = d00                     ; /* MA13_0                          */ 
+PIN 15  = d08                     ; /* unuse                           */ 
+PIN 16  = d09                     ; /* unuse                           */ 
+PIN 17  = d10                     ; /* MA14_0                          */ 
+PIN 18  = d11                     ; /* MA14_1                          */ 
+PIN 19  = d19                     ; /* unuse                           */ 
+PIN 20  = d20                     ; /* MA15_0                          */ 
+PIN 21  = d21                     ; /* MA15_1                          */ 
+PIN 22  = d29                     ; /* unuse                           */ 
+PIN 23  = WE_OUT                  ; /* WE                              */ 
+
+d00   =  A13; /* 0 - page bit 0 */
+d08.d =  'b'0; /* unuse */
+d09.d =  'b'0; /* unuse */
+d10.d =  nReset&(((!nWE&!nSTSL)&!A15&A14&A13&!A12&di0)#((nWE#nSTSL)&d10)#((!nWE&!nSTSL)&(A12#!A13#!A14#A15)&d10)); /* 0 - page bit 1 */
+d11.d =  nReset&(((!nWE&!nSTSL)&!A15&A14&A13&A12&di0)#((nWE#nSTSL)&d11)#((!nWE&!nSTSL)&(!A12#!A13#!A14#A15)&d11)); /* 1 - page bit 1 */
+d19.d =  'b'0; /* unuse */
+d20.d =  nReset&(((!nWE&!nSTSL)&!A15&A14&A13&!A12&di1)#((nWE#nSTSL)&d20)#((!nWE&!nSTSL)&(A12#!A13#!A14#A15)&d20)); /* 0 - page bit 2 */
+d21.d =  nReset&(((!nWE&!nSTSL)&!A15&A14&A13&A12&di1)#((nWE#nSTSL)&d21)#((!nWE&!nSTSL)&(!A12#!A13#!A14#A15)&d21)); /* 1 - page bit 2 */
+d29.d =  'b'0; /* unuse */
+
+WE_OUT =  !A15#!A14#!A13#!A12#nSTSL#nWE;
+
+/*d00.oe = 'b'1;*/  /* trans A13 */
+d10.oe = !A15;
+d11.oe =  A15;
+d20.oe = !A15;
+d21.oe =  A15;
+d08.oe = 'b'0; /* unuse */
+d09.oe = 'b'0; /* unuse */
+d19.oe = 'b'0; /* unuse */
+d29.oe = 'b'0; /* unuse */
+
+d08.ar = 'b'0;
+d08.sp = 'b'0;
+d09.ar = 'b'0;
+d09.sp = 'b'0;
+d10.ar = 'b'0;
+d10.sp = 'b'0;
+d11.ar = 'b'0;
+d11.sp = 'b'0;
+d19.ar = 'b'0;
+d19.sp = 'b'0;
+d20.ar = 'b'0;
+d20.sp = 'b'0;
+d21.ar = 'b'0;
+d21.sp = 'b'0;
+d29.ar = 'b'0;
+d29.sp = 'b'0;
