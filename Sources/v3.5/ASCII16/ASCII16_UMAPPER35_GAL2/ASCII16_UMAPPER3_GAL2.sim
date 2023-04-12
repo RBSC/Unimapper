@@ -1,0 +1,156 @@
+%SIGNAL
+PIN  11 =  A11 
+PIN  13 =  A12 
+PIN   7 =  A13 
+PIN   5 =  A15 
+PIN   1 =  CLK 
+PIN   6 =  Prog 
+PIN  22 =  d22 
+PIN  23 =  d23 
+PIN  14 =  d30 
+PIN  15 =  d31 
+PIN  16 =  d32 
+PIN  17 =  d33 
+PIN  18 =  d40 
+PIN  19 =  d41 
+PIN  20 =  d42 
+PIN  21 =  d43 
+PIN   8 =  di2 
+PIN   9 =  di3 
+PIN  10 =  di4 
+PIN   4 =  nReset 
+PIN   2 =  nSTSL 
+PIN   3 =  nWE 
+%END
+
+%FIELD
+%END
+
+%EQUATION
+d22.d  =>
+    0 
+
+d22.ar d23.ar d30.ar d31.ar d32.ar d33.ar d40.ar d41.ar d42.ar d43.ar  =>
+    0 
+
+d22.oe  =>
+    0 
+
+d22.sp d23.sp d30.sp d31.sp d32.sp d33.sp d40.sp d41.sp d42.sp d43.sp  =>
+    0 
+
+d23.d  =>
+    0 
+
+d23.ar  =>
+    
+d23.oe  =>
+    0 
+
+d23.sp  =>
+    
+d30.d  =>
+    !A11 & !A12 & A13 & !A15 & !Prog & di2 & nReset & !nSTSL & !nWE
+  # A15 & !Prog & !d30 & nReset & !nSTSL & !nWE
+  # !A13 & !Prog & !d30 & nReset & !nSTSL & !nWE
+  # A12 & !Prog & !d30 & nReset & !nSTSL & !nWE
+  # A11 & !Prog & !d30 & nReset & !nSTSL & !nWE
+  # !Prog & !d30 & nReset & nWE
+  # !Prog & !d30 & nReset & nSTSL
+
+d30.ar  =>
+    
+d30.oe  =>
+    !A15
+
+d30.sp  =>
+    
+d31.d  =>
+    !A11 & A12 & A13 & !A15 & di2 & nReset & !nSTSL & !nWE
+  # A15 & !d31 & nReset & !nSTSL & !nWE
+  # !A13 & !d31 & nReset & !nSTSL & !nWE
+  # !A12 & !d31 & nReset & !nSTSL & !nWE
+  # A11 & !d31 & nReset & !nSTSL & !nWE
+  # !d31 & nReset & nSTSL
+  # !d31 & nReset & nWE
+
+d31.ar  =>
+    
+d31.oe  =>
+    A15
+
+d31.sp  =>
+    
+d32.d  =>
+    0 
+
+d32.ar  =>
+    
+d32.oe  =>
+    0 
+
+d32.sp  =>
+    
+d33.d  =>
+    0 
+
+d33.ar  =>
+    
+d33.oe  =>
+    0 
+
+d33.sp  =>
+    
+d40.d  =>
+    !A11 & !A12 & A13 & !A15 & !Prog & di3 & nReset & !nSTSL & !nWE
+  # A15 & !Prog & !d40 & nReset & !nSTSL & !nWE
+  # !A13 & !Prog & !d40 & nReset & !nSTSL & !nWE
+  # A12 & !Prog & !d40 & nReset & !nSTSL & !nWE
+  # A11 & !Prog & !d40 & nReset & !nSTSL & !nWE
+  # !Prog & !d40 & nReset & nWE
+  # !Prog & !d40 & nReset & nSTSL
+
+d40.ar  =>
+    
+d40.oe  =>
+    !A15
+
+d40.sp  =>
+    
+d41.d  =>
+    !A11 & A12 & A13 & !A15 & di3 & nReset & !nSTSL & !nWE
+  # A15 & !d41 & nReset & !nSTSL & !nWE
+  # !A13 & !d41 & nReset & !nSTSL & !nWE
+  # !A12 & !d41 & nReset & !nSTSL & !nWE
+  # A11 & !d41 & nReset & !nSTSL & !nWE
+  # !d41 & nReset & nSTSL
+  # !d41 & nReset & nWE
+
+d41.ar  =>
+    
+d41.oe  =>
+    A15
+
+d41.sp  =>
+    
+d42.d  =>
+    0 
+
+d42.ar  =>
+    
+d42.oe  =>
+    0 
+
+d42.sp  =>
+    
+d43.d  =>
+    0 
+
+d43.ar  =>
+    
+d43.oe  =>
+    0 
+
+d43.sp  =>
+    
+%END

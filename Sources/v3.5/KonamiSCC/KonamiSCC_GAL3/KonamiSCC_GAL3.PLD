@@ -1,0 +1,59 @@
+Name     SCC_GAL3 ;
+PartNo   00 ;
+Date     25.09.2022 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK                     ; /* clock ~3.5Mhz                   */
+PIN  2  = nSTSL                   ; /* slot  select low-active         */
+PIN  3  = nWE                     ; /* write select low-active         */  
+PIN  4  = nReset                  ; /* reset select low-active         */  
+PIN  5  = A15                     ; /* adrress bit 15                  */ 
+PIN  6  = Prog                    ; /* program bit VCC - prog enable   */
+PIN  7  = A13                     ; /* adrress bit 13                  */  
+PIN  8  = di5                     ; /* page number bit 5               */ 
+PIN  9  = di4                     ; /* page number bit 4               */ 
+PIN 10  = A14                     ; /* address 14 for auto mux         */ 
+PIN 11  = A11                     ; /* adrress bit 11                  */ 
+PIN 13  = A12                     ; /* address 12 for auto mux         */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 14  = d50                     ; /* addr ROM 18_0                   */ 
+PIN 15  = d51                     ; /* addr ROM 18_1                   */ 
+PIN 16  = d52                     ; /* addr ROM 18_2                   */ 
+PIN 17  = d53                     ; /* addr ROM 18_3                   */ 
+PIN 18  = p0                      ; /* unuse                           */ 
+PIN 19  = p1                      ; /* unuse                           */ 
+PIN 20  = p2                      ; /* unuse                           */ 
+PIN 21  = auto_out                ; /* auto select mapper              */ 
+PIN 22  = test                    ; /* test pin                        */ 
+PIN 23  = wef                     ; /* write enable                    */ 
+
+auto_out = A12;
+
+d50.d =   Prog#( nReset&(((!nWE&!nSTSL)&!A15&!A13&A12&!A11&di5)#((nWE#nSTSL)&d50)#((!nWE&!nSTSL)&( A15# A13#!A12#A11)&d50)));  /* 0x5000 0b0101 */
+d51.d =  !Prog&( nReset&(((!nWE&!nSTSL)&!A15& A13&A12&!A11&di5)#((nWE#nSTSL)&d51)#((!nWE&!nSTSL)&( A15#!A13#!A12#A11)&d51)));  /* 0x7000 0b0111 */
+d52.d =          nReset&(((!nWE&!nSTSL)& A15&!A13&A12&!A11&di5)#((nWE#nSTSL)&d52)#((!nWE&!nSTSL)&(!A15# A13#!A12#A11)&d52));   /* 0x9000 0b1001 */
+d53.d =  !Prog&( nReset&(((!nWE&!nSTSL)& A15& A13&A12&!A11&di5)#((nWE#nSTSL)&d53)#((!nWE&!nSTSL)&(!A15#!A13#!A12#A11)&d53)));  /* 0xB000 0b1011 */
+
+d50.oe = !A13&!A15;
+d51.oe =  A13&!A15;
+d52.oe = !A13& A15;
+d53.oe =  A13& A15;
+
+test = 'b'0;
+wef  = !Prog#nWE#nSTSL;
+
+d50.ar = 'b'0;
+d50.sp = 'b'0;
+d51.ar = 'b'0;
+d51.sp = 'b'0;
+d52.ar = 'b'0;
+d52.sp = 'b'0;
+d53.ar = 'b'0;
+d53.sp = 'b'0;

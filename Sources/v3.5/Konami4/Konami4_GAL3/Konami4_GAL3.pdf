@@ -1,0 +1,219 @@
+{COMPONENT D:\PLD\_UM_230304\_V35_NOSCC\NOSCC_GAL3\NOSCC_GAL3.SYM
+
+ {ENVIRONMENT
+  {PDIFvrev 3.00}
+  {Program "CUPL(WM) Version 5.0a"}
+  {DBtype "Schematic"}
+  {DBvrev 1.01}
+  {DBtime "Sat Mar 04 11:44:40 2023 "}
+  {DBunit "MIL"}
+  {DBgrid 10}
+  {Lyrstr "WIRES" 1 "BUS" 1 "GATE" 2 "IEEE" 2 "PINFUN" 3 "PINNUM" 1 
+          "PINNAM" 6 "PINCON" 4 "REFDES" 2 "ATTR" 6 "SDOT" 1 
+          "DEVICE" 5 "OUTLIN" 5 "ATTR2" 6 "NOTES" 6 "NETNAM" 4 
+          "CMPNAM" 5 "BORDER" 5}
+ }
+
+ {USER
+  {VIEW
+   {Mode SYMB}
+   {Nlst OPEN}
+   {Vw 0 0 2}
+   {Lv 12 2 2 2 0 0 2 2 2 2 0 0 2 1 2 0 0 0 0}
+   {Gs 10 10}
+  }
+ }
+
+ {DISPLAY
+  [Ly "PINNUM"]
+  [Ls "SOLID"][Wd 0]
+  [Ts 15][Tj "LC"][Tr 0][Tm "N"]
+ }
+
+ {SYMBOL
+  {PIN_DEF
+   [Ly "PINCON"]
+   {P CLK {Pt "INPUT"}{Lq 0}{Ploc 100 340}}
+   {P NSTSL {Pt "INPUT"}{Lq 0}{Ploc 100 300}}
+   {P NWE {Pt "INPUT"}{Lq 0}{Ploc 100 280}}
+   {P NRESET {Pt "INPUT"}{Lq 0}{Ploc 100 260}}
+   {P A15 {Pt "INPUT"}{Lq 0}{Ploc 100 240}}
+   {P PROG {Pt "INPUT"}{Lq 0}{Ploc 100 220}}
+   {P A13 {Pt "INPUT"}{Lq 0}{Ploc 100 200}}
+   {P DI5 {Pt "INPUT"}{Lq 0}{Ploc 100 180}}
+   {P PIN1 {Pt "INPUT"}{Lq 0}{Ploc 100 160}}
+   {P PIN0 {Pt "INPUT"}{Lq 0}{Ploc 100 140}}
+   {P A11 {Pt "INPUT"}{Lq 0}{Ploc 100 120}}
+   {P A12 {Pt "INPUT"}{Lq 0}{Ploc 100 100}}
+   {P P0 {Pt "INPUT"}{Lq 0}{Ploc 100 80}}
+   {P P1 {Pt "INPUT"}{Lq 0}{Ploc 100 60}}
+   {P P2 {Pt "INPUT"}{Lq 0}{Ploc 100 40}}
+   {P P3 {Pt "INPUT"}{Lq 0}{Ploc 100 20}}
+   {P TEST {Pt "I/O"}{Lq 0}{Ploc 300 20}}
+   {P WEF {Pt "I/O"}{Lq 0}{Ploc 300 40}}
+   {P D50 {Pt "OUTPUT"}{Lq 0}{Ploc 300 60}}
+   {P D51 {Pt "OUTPUT"}{Lq 0}{Ploc 300 80}}
+   {P D52 {Pt "OUTPUT"}{Lq 0}{Ploc 300 100}}
+   {P D53 {Pt "OUTPUT"}{Lq 0}{Ploc 300 120}}
+  }
+
+  {PKG
+   [Ly "REFDES"]
+   [Ts 25][Tj "CB"][Tr 0][Tm "N"]
+   {Rdl 200 370}
+
+   [Ly "PINNUM"]
+   [Ts 15][Tj "RC"]
+   {Pnl 120 350}
+   [Ts 15][Tj "RC"]
+   {Pnl 120 310}
+   {Pnl 120 290}
+   {Pnl 120 270}
+   {Pnl 120 250}
+   {Pnl 120 230}
+   {Pnl 120 210}
+   {Pnl 120 190}
+   {Pnl 120 170}
+   {Pnl 120 150}
+   {Pnl 120 130}
+   {Pnl 120 110}
+   {Pnl 120 90}
+   {Pnl 120 70}
+   {Pnl 120 50}
+   {Pnl 120 30}
+   [Ts 15][Tj "LC"]
+   {Pnl 280 30}
+   {Pnl 280 50}
+   {Pnl 280 70}
+   {Pnl 280 90}
+   {Pnl 280 110}
+   {Pnl 280 130}
+
+   {Sd A 1 2 3 4 5 6 7 8 9 10 11 13 18 19 20 21 22 23 14 15 16 17}
+  }
+
+  {PIC
+   [Ly "GATE"]
+   [Ts 15][Tj "LC"][Tr 0][Tm "N"]
+   {R 130 360 270 0}
+   {L 130 340 100 340}
+   {L 130 350 140 340 130 330}
+   {L 130 300 100 300}
+   {L 130 280 100 280}
+   {L 130 260 100 260}
+   {L 130 240 100 240}
+   {L 130 220 100 220}
+   {L 130 200 100 200}
+   {L 130 180 100 180}
+   {L 130 160 100 160}
+   {L 130 140 100 140}
+   {L 130 120 100 120}
+   {L 130 100 100 100}
+   {L 130 80 100 80}
+   {L 130 60 100 60}
+   {L 130 40 100 40}
+   {L 130 20 100 20}
+   {L 270 20 300 20}
+   {L 270 40 300 40}
+   {L 270 60 300 60}
+   {L 270 80 300 80}
+   {L 270 100 300 100}
+   {L 270 120 300 120}
+   [Ly "PINNAM"]
+   [Tj "LC"]
+   {T "CLK" 140 340}
+   {T "NSTSL" 140 300}
+   {T "NWE" 140 280}
+   {T "NRESET" 140 260}
+   {T "A15" 140 240}
+   {T "PROG" 140 220}
+   {T "A13" 140 200}
+   {T "DI5" 140 180}
+   {T "PIN1" 140 160}
+   {T "PIN0" 140 140}
+   {T "A11" 140 120}
+   {T "A12" 140 100}
+   {T "P0" 140 80}
+   {T "P1" 140 60}
+   {T "P2" 140 40}
+   {T "P3" 140 20}
+   [Tj "RC"]
+   {T "TEST" 260 20}
+   {T "WEF" 260 40}
+   {T "D50" 260 60}
+   {T "D51" 260 80}
+   {T "D52" 260 100}
+   {T "D53" 260 120}
+   [Ly "DEVICE"]
+   [Tj "CT"]
+   {T "G22V10" 200 -10}
+  }
+
+  {ATR
+   {IN
+    {Org 100 20}
+    {Ty 255}
+   }
+   {EX
+    [Ly "ATTR2"]
+    [Ts 12][Tj "CT"][Tr 0][Tm "N"]
+    {At PLD D:\PLD\_UM_230304\_V35_NOSCC\NOSCC_GAL3\NOSCC_GAL3 200 360}
+   }
+  }
+ }
+
+ {DETAIL
+  {ANNOTATE
+  }
+
+  {NET_DEF
+   {N CLK
+   }
+   {N NSTSL
+   }
+   {N NWE
+   }
+   {N NRESET
+   }
+   {N A15
+   }
+   {N PROG
+   }
+   {N A13
+   }
+   {N DI5
+   }
+   {N PIN1
+   }
+   {N PIN0
+   }
+   {N A11
+   }
+   {N A12
+   }
+   {N P0
+   }
+   {N P1
+   }
+   {N P2
+   }
+   {N P3
+   }
+   {N TEST
+   }
+   {N WEF
+   }
+   {N D50
+   }
+   {N D51
+   }
+   {N D52
+   }
+   {N D53
+   }
+  }
+
+  {SUBCOMP
+  }
+ }
+}

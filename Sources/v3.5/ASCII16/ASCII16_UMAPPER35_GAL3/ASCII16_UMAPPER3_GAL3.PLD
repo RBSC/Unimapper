@@ -1,0 +1,65 @@
+Name     KonamiNoSCC_GAL3 ;
+PartNo   00 ;
+Date     17.09.2022 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK                     ; /* clock ~3.5Mhz                   */
+PIN  2  = nSTSL                   ; /* slot  select low-active         */ 
+PIN  3  = nWE                     ; /* write select low-active         */  
+PIN  4  = nReset                  ; /* reset select low-active         */  
+PIN  5  = A15                     ; /* adrress bit 15                  */ 
+PIN  6  = Prog                    ; /* program bit VCC - prog enable   */
+PIN  7  = A13                     ; /* adrress bit 13                  */  
+PIN  8  = di5                     ; /* page number bit 5               */
+PIN  9  = di4                     ; /* page number bit 4               */
+PIN 10  = PIN0                    ; /* adrress bit 14                  */ 
+PIN 11  = A11                     ; /* adrress bit 11                  */ 
+PIN 13  = A12                     ; /* adrress bit 12                  */ 
+
+/* *************** OUTPUT PINS *********************/
+PIN 14  = d50                     ; /* addr ROM 18_0                   */ 
+PIN 15  = d51                     ; /* addr ROM 18_1                   */ 
+PIN 16  = d52                     ; /* addr ROM 18 command 0           */ 
+PIN 17  = d53                     ; /* addr ROM 18 prog unuse          */ 
+PIN 18  = p0                      ; /* reserv                          */ 
+PIN 19  = p1                      ; /* reserv                          */ 
+PIN 20  = p2                      ; /* reserv                          */ 
+PIN 21  = p3                      ; /* reserv                          */ 
+PIN 22  = test                    ; /* test pin                        */ 
+PIN 23  = wef                     ; /* WR to Flash                     */ 
+
+d50.d = !Prog&nReset&(((!nWE&!nSTSL)&!A15&A13&!A12&!A11&di4)#((nWE#nSTSL)&d50)#((!nWE&!nSTSL)&(A15#!A13# A12#A11)& d50));   /* 0x6000-0x67FF 0b0110 0xxx */
+d51.d =       nReset&(((!nWE&!nSTSL)&!A15&A13& A12&!A11&di4)#((nWE#nSTSL)&d51)#((!nWE&!nSTSL)&(A15#!A13#!A12#A11)& d51));   /* 0x7000-0x77FF 0b0111 0xxx */
+d52.d = 'b'0;  /* unuse */
+d53.d = 'b'0;  /* unuse */
+
+wef  = !Prog#nWE#nSTSL;
+
+/* wef.d  = !Prog#nWE#nSTSL;*/
+
+d50.oe = !A15; /* page 0 */
+d51.oe =  A15; /* page 1 */
+d52.oe = 'b'0; /* page command always 0 */
+d53.oe = 'b'0; /* page prog unuse */
+/* wef.oe = 'b'1; */ /* page prog unuse */
+
+test = 'b'0;
+
+d50.ar = 'b'0;
+d50.sp = 'b'0;
+d51.ar = 'b'0;
+d51.sp = 'b'0;
+d52.ar = 'b'0;
+d52.sp = 'b'0;
+d53.ar = 'b'0;
+d53.sp = 'b'0;
+/*
+wef.ar = 'b'0;
+wef.sp = 'b'0; */
+

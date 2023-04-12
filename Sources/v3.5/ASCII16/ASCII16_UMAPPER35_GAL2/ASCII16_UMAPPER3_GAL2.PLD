@@ -1,0 +1,83 @@
+Name     ASC16_GAL2 ;
+PartNo   00 ;
+Date     17.09.2022 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK                     ; /* clock ~3.5Mhz                   */
+PIN  2  = nSTSL                   ; /* slot  select low-active         */
+PIN  3  = nWE                     ; /* write select low-active         */  
+PIN  4  = nReset                  ; /* reset select low-active         */  
+PIN  5  = A15                     ; /* adrress bit 15                  */ 
+PIN  6  = Prog                    ; /* program bit VCC - prog enable   */
+PIN  7  = A13                     ; /* adrress bit 13                  */  
+PIN  8  = di2                     ; /* page number bit 2               */
+PIN  9  = di3                     ; /* page number bit 3               */
+PIN 10  = di4                     ; /* page number bit 4               */
+PIN 11  = A11                     ; /* adrress bit 11                  */ 
+PIN 13  = A12                     ; /* adrress bit 12                  */ 
+
+
+/* *************** OUTPUT PINS *********************/
+PIN 14  = d30                     ; /* addr ROM 16_0                   */ 
+PIN 15  = d31                     ; /* addr ROM 16_1                   */  
+PIN 16  = d32                     ; /* addr ROM 16 command 0           */ 
+PIN 17  = d33                     ; /* addr ROM 16 prog unuse          */ 
+PIN 18  = d40                     ; /* addr ROM 17_0                   */ 
+PIN 19  = d41                     ; /* addr ROM 17_1                   */ 
+PIN 20  = d42                     ; /* addr ROM 17 command 0           */ 
+PIN 21  = d43                     ; /* addr ROM 17 prog unuse          */ 
+PIN 22  = d22                     ; /* addr ROM 15 command             */ 
+PIN 23  = d23                     ; /* addr ROM 15 prog                */ 
+
+d30.d = !Prog&nReset&(((!nWE&!nSTSL)&!A15&A13&!A12&!A11&di2)#((nWE#nSTSL)&d30)#((!nWE&!nSTSL)&(A15#!A13# A12#A11)& d30));   /* 0x6000-0x67FF 0b0110 0xxx */
+d31.d =       nReset&(((!nWE&!nSTSL)&!A15&A13& A12&!A11&di2)#((nWE#nSTSL)&d31)#((!nWE&!nSTSL)&(A15#!A13#!A12#A11)& d31));   /* 0x7000-0x77FF 0b0111 0xxx */
+d32.d = 'b'0; /* command bit always 0 */
+d33.d = 'b'0; /* unuse */
+
+d40.d = !Prog&nReset&(((!nWE&!nSTSL)&!A15&A13&!A12&!A11&di3)#((nWE#nSTSL)&d40)#((!nWE&!nSTSL)&(A15#!A13# A12#A11)& d40));   /* 0x6000-0x67FF 0b0110 0xxx */
+d41.d =       nReset&(((!nWE&!nSTSL)&!A15&A13& A12&!A11&di3)#((nWE#nSTSL)&d41)#((!nWE&!nSTSL)&(A15#!A13#!A12#A11)& d41));   /* 0x7000-0x77FF 0b0111 0xxx */
+d42.d = 'b'0; /* command bit always 0 */
+d43.d = 'b'0; /* unuse */
+
+d22.d = 'b'0; /* for prog command A15 always 0 */
+d23.d = 'b'0; /* unuse */
+
+d30.oe = !A15;       /* page 0 */
+d31.oe =  A15;       /* page 1 */
+d32.oe = 'b'0;       /* page command    */
+d33.oe = 'b'0;       /* page prog unuse */
+
+d40.oe = !A15;       /* page 0 */
+d41.oe =  A15;       /* page 1 */
+d42.oe = 'b'0;       /* page command    */
+d43.oe = 'b'0;       /* page prog unuse */
+
+d22.oe = 'b'0;       /* page command    */
+d23.oe = 'b'0;       /* page prog unuse */
+
+d30.ar = 'b'0;
+d30.sp = 'b'0;
+d31.ar = 'b'0;
+d31.sp = 'b'0;
+d32.ar = 'b'0;
+d32.sp = 'b'0;
+d33.ar = 'b'0;
+d33.sp = 'b'0;
+d40.ar = 'b'0;
+d40.sp = 'b'0;
+d41.ar = 'b'0;
+d41.sp = 'b'0;
+d42.ar = 'b'0;
+d42.sp = 'b'0;
+d43.ar = 'b'0;
+d43.sp = 'b'0;
+d22.ar = 'b'0;
+d22.sp = 'b'0;
+d23.ar = 'b'0;
+d23.sp = 'b'0;

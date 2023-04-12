@@ -1,0 +1,86 @@
+Name     KonamiNoSCC_GAL1 ;
+PartNo   00 ;
+Date     02.10.2022 ;
+Revision 01 ;
+Designer Pyhesty ;
+Company  NovSU ;
+Assembly None ;
+Location  ;
+Device   g22v10 ;
+
+/* *************** INPUT PINS *********************/
+PIN  1  = CLK                     ; /*                                 */ 
+PIN  2  = nSTSL                   ; /*                                 */ 
+PIN  3  = nWE                     ; /*                                 */ 
+PIN  4  = nReset                  ; /*                                 */ 
+PIN  5  = A15                     ; /*                                 */ 
+PIN  6  = Prog                    ; /*                                 */ 
+PIN  7  = A13                     ; /*                                 */ 
+PIN  8  = di0                     ; /*                                 */ 
+PIN  9  = di1                     ; /*                                 */ 
+PIN 10  = di2                     ; /*                                 */ 
+PIN 11  = A11                     ; /*                                 */ 
+PIN 13  = A12                     ; /*                                 */ 
+
+
+/* *************** OUTPUT PINS *********************/
+PIN 14  = d00                     ; /*                                 */ 
+PIN 15  = d01                     ; /*                                 */ 
+PIN 16  = d02                     ; /*                                 */ 
+PIN 17  = d03                     ; /*                                 */ 
+PIN 18  = d10                     ; /*                                 */ 
+PIN 19  = d11                     ; /*                                 */ 
+PIN 20  = d12                     ; /*                                 */ 
+PIN 21  = d13                     ; /*                                 */ 
+PIN 22  = d20                     ; /*                                 */ 
+PIN 23  = d21                     ; /*                                 */ 
+
+
+d00.d =  Prog; /* always 0, Prog Page0 == Seg01 Page1 == Seg02*/
+d01.d =  Prog#(!nReset#(((!nWE&!nSTSL)& A13&!A15&di0)#((nWE#nSTSL)&d01)#((!nWE&!nSTSL)&(!A13# A15)&d01))); /* 0x6000 0b0110 */
+d02.d =         nReset&(((!nWE&!nSTSL)&!A13& A15&di0)#((nWE#nSTSL)&d02)#((!nWE&!nSTSL)&( A13#!A15)&d02));  /* 0x8000 0b1000 */
+d03.d = !Prog&(!nReset#(((!nWE&!nSTSL)& A13& A15&di0)#((nWE#nSTSL)&d03)#((!nWE&!nSTSL)&(!A13#!A15)&d03))); /* 0xA000 0b1010 */
+
+d10.d =  Prog; /* always 0 */
+d11.d = !Prog&(nReset&(((!nWE&!nSTSL)& A13&!A15&di1)#((nWE#nSTSL)&d11)#((!nWE&!nSTSL)&(!A13# A15)&d11))); /* 0x6000 0b0110 */
+d12.d =       !nReset#(((!nWE&!nSTSL)&!A13& A15&di1)#((nWE#nSTSL)&d12)#((!nWE&!nSTSL)&( A13#!A15)&d12));  /* 0x8000 0b1000 */
+d13.d =  Prog#!nReset#(((!nWE&!nSTSL)& A13& A15&di1)#((nWE#nSTSL)&d13)#((!nWE&!nSTSL)&(!A13#!A15)&d13));  /* 0xA000 0b1010 */
+
+d20.d =  Prog; /* always 0 */
+d21.d = !Prog&(nReset&(((!nWE&!nSTSL)& A13&!A15&di2)#((nWE#nSTSL)&d21)#((!nWE&!nSTSL)&(!A13# A15)&d21))); /* 0x6000 0b0110 */
+
+d00.oe = !A13& !A15;
+d01.oe =  A13& !A15;
+d02.oe = !A13&  A15;
+d03.oe =  A13&  A15;
+d10.oe = !A13& !A15;
+d11.oe =  A13& !A15;
+d12.oe = !A13&  A15;
+d13.oe =  A13&  A15;
+d20.oe = !A13& !A15;
+d21.oe =  A13& !A15;
+
+d00.ar = 'b'0;
+d00.sp = 'b'0;
+d01.ar = 'b'0;
+d01.sp = 'b'0;
+d02.ar = 'b'0;
+d02.sp = 'b'0;
+d03.ar = 'b'0;
+d03.sp = 'b'0;
+d10.ar = 'b'0;
+d10.sp = 'b'0;
+d11.ar = 'b'0;
+d11.sp = 'b'0;
+d12.ar = 'b'0;
+d12.sp = 'b'0;
+d13.ar = 'b'0;
+d13.sp = 'b'0;
+d20.ar = 'b'0;
+d20.sp = 'b'0;
+d21.ar = 'b'0;
+d21.sp = 'b'0;
+
+
+
+

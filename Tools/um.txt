@@ -1,0 +1,35 @@
+;--------------------------------------------------------------------------------
+; Utility for programming UniMapper cartridge v3.5
+; Copyright (c) 2022-2023 RBSC
+; Developers: Pyhesty and Wierzbowsky
+;--------------------------------------------------------------------------------
+
+; Note: use Sjasm assembler to compile
+
+
+Command line options
+--------------------
+
+      um.com or um    - start the utility
+      um /v           - start in verbose mode
+      um /V           - start in verbose mode
+
+
+Programming of FlashROM
+-----------------------
+
+The cartridge v3.5 or the cartridge converted from v3.0 to v3.5 can be programmed from MSX-DOS on a real MSX computer. The utility called UM.COM is
+able to write any ROM file into the FlashROM chip when the programming mode is enabled. The procedure is very simple:
+
+ - Set the jumper to enable the "Programming mode"
+ - Boot from an MSX-DOS diskette or from a multi-functional cartridge into MSX-DOS2
+ - Run the UM.COM utility
+ - Select the desired mapper
+ - Input the desired ROM file's name without the .ROM extension
+ - After flashing is complete, power down a computer and set the jumper to "Normal mode"
+
+If the tool outputs the "Wrong FlashROM ID" message and exits, then either the cartridge is not in the programmable mode or the FlashROM chip is bad
+or missing. Please mitigate the problem and try again.
+
+If for some reason the cartridge doesn't allow a computer to boot even when the "Programming mode" is selected, please remove the FlashROM chip from
+the cartridge's socket and erase it in the EEPROM programmer.
